@@ -1,53 +1,35 @@
 package vigier.android.mini_projet_adnroid;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public class Beer implements Parcelable {
-    private String title;
-    private int id;
-    private String imgURL;
-    private String date;
-    private String color;
-    private String desc;
+import java.util.ArrayList;
 
-    public Beer(int id) {
-        this.id = id;
-    }
+public class Beer {
 
-    protected Beer(Parcel in) {
-        title = in.readString();
-        id = in.readInt();
-        imgURL = in.readString();
-        date = in.readString();
-        color = in.readString();
-        desc = in.readString();
-    }
+    private String name;
+    private String id;
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(title);
-        dest.writeInt(id);
-        dest.writeString(imgURL);
-        dest.writeString(date);
-        dest.writeString(color);
-        dest.writeString(desc);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<Beer> CREATOR = new Creator<Beer>() {
-        @Override
-        public Beer createFromParcel(Parcel in) {
-            return new Beer(in);
+    public Beer(JSONObject object) {
+        try {
+            this.name = object.getString("name");
+            this.id = object.getString("id");
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+    }
 
-        @Override
-        public Beer[] newArray(int size) {
-            return new Beer[size];
+    public static ArrayList<Beer> fromJson(JSONArray jsonObjects) {
+        ArrayList<Beer> beers = new ArrayList<Beer>();
+
+        for (int i = 0; i < jsonObjects.length(); i++) {
+            try {
+                beers.add(new Beer(jsonObjects.getJSONObject(i)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
-    };
+        return beers;
+    }
 }
