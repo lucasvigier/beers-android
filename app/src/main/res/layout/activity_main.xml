@@ -30,6 +30,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="410dp"
+        android:layout_height="491dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
     <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="332dp"
@@ -51,16 +61,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="410dp"
-        android:layout_height="491dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar">
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
