@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         button.setText("Search");
 
         ArrayList<String> beersList = new ArrayList<>();
+        ArrayList<Integer> beersidList = new ArrayList<>();
         ArrayAdapter<String> beersAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, beersList);
 
         listView.setAdapter(beersAdapter);
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 beersList.clear();
+                beersidList.clear();
                 Ion.with(v.getContext())
                         .load("https://api.punkapi.com/v2/beers?beer_name=" + searchText.getText() + "&per_page=5")
                         .setLogging("ION_LOGS", Log.DEBUG)
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                                     JSONArray beerJsonObject = new JSONArray(result);
                                     for (int i = 0; i < beerJsonObject.length(); i++) {
                                         beersList.add(beerJsonObject.getJSONObject(i).getString("name"));
+                                        beersidList.add(beerJsonObject.getJSONObject(i).getInt("id"));
                                     }
                                     listView.setAdapter(beersAdapter);
                                 } catch (JSONException jsonException) {
@@ -78,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent beerInfoIntent = new Intent(MainActivity.this, BeerInfoActivity.class);
-                beerInfoIntent.putExtra("id", position);
+                beerInfoIntent.putExtra("id", beersidList.get(position));
                 startActivity(beerInfoIntent);
             }
         });
