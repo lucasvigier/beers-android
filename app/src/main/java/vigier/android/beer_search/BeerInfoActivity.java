@@ -35,27 +35,20 @@ public class BeerInfoActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         int id = extras.getInt("id");
+        System.out.println(id);
 
-//        Ion.with(Vien)
-//                .load("https://api.punkapi.com/v2/beers?beer_name=" + searchText.getText() + "&per_page=5")
-//                .setLogging("ION_LOGS", Log.DEBUG)
-//                .asString()
-//                .setCallback(new FutureCallback<String>() {
-//                    @Override
-//                    public void onCompleted(Exception e, String result) {
-//                        try {
-//                            JSONArray beerJsonObject = new JSONArray(result);
-//                            for (int i = 0; i < beerJsonObject.length(); i++) {
-//                                beersList.add(beerJsonObject.getJSONObject(i).getString("name"));
-//                                beersidList.add(beerJsonObject.getJSONObject(i).getInt("id"));
-//                            }
-//                            listView.setAdapter(beersAdapter);
-//                        } catch (JSONException jsonException) {
-//                            jsonException.printStackTrace();
-//                        }
-//
-//                    }
-//                });
+        Ion.with(super.getBaseContext())
+                .load(("https://api.punkapi.com/v2/beers/" + id))
+                .setLogging("ION_LOGS", Log.DEBUG)
+                .asString()
+                .setCallback(new FutureCallback<String>() {
+                    @Override
+                    public void onCompleted(Exception e, String result) {
+                        System.out.println(result);
+
+
+                    }
+                });
 
     }
 }
