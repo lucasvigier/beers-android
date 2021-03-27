@@ -3,6 +3,7 @@ package vigier.android.beer_search;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         listView = findViewById(R.id.listView);
 
-        textView.setText("PunkAPI Beer Finder");
+        textView.setText("Beer Finder");
         button.setText("Search");
 
         ArrayList<String> beersList = new ArrayList<>();
@@ -76,7 +77,9 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Intent beerInfoIntent = new Intent(MainActivity.this, BeerInfoActivity.class);
+                beerInfoIntent.putExtra("id", position);
+                startActivity(beerInfoIntent);
             }
         });
     }

@@ -10,12 +10,8 @@
         android:id="@+id/textViewBeerInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="205dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="205dp"
-        android:layout_marginBottom="635dp"
+        android:layout_marginTop="32dp"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,10 +24,12 @@
         android:layout_marginTop="128dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="311dp"
+        android:contentDescription="@string/beer_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textViewBeerAttributes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -41,8 +39,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="128dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="584dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewBeer"
         app:layout_constraintTop_toTopOf="parent" />
