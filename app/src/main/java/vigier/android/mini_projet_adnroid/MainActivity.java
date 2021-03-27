@@ -19,6 +19,10 @@ import android.widget.TextView;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,7 +62,24 @@ public class MainActivity extends AppCompatActivity {
                         .setCallback(new FutureCallback<String>() {
                             @Override
                             public void onCompleted(Exception e, String result) {
-                                
+                                try {
+                                    JSONArray jso = new JSONArray(result);
+
+                                    System.out.println(jso.length());
+                                    for(int i =0 ; i < jso.length();i++)
+                                    {
+                                        beersList.add(jso.getJSONObject(i).getString("name"));
+                                    }
+                                    listView.setAdapter(beersAdapter);
+
+
+
+
+
+                                } catch (JSONException jsonException) {
+                                    jsonException.printStackTrace();
+                                }
+
                             }
                         });
 
