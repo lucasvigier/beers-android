@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                beersList.clear();
                 Ion.with(v.getContext())
                         .load("https://api.punkapi.com/v2/beers?beer_name=" + searchText.getText() + "&per_page=5")
                         .setLogging("ION_LOGS", Log.DEBUG)
