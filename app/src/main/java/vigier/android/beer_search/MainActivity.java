@@ -6,14 +6,11 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.ScrollView;
-import android.widget.Scroller;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.koushikdutta.async.future.FutureCallback;
@@ -21,7 +18,6 @@ import com.koushikdutta.ion.Ion;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -29,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     Button button;
     EditText searchText;
-    SeekBar seekBar;
     TextView textView;
     ListView listView;
 
@@ -47,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
         textView.setText("PunkAPI Beer Finder");
         button.setText("Search");
 
-        ArrayList<String> beersList = new ArrayList<String>();
+        ArrayList<String> beersList = new ArrayList<>();
+        ArrayAdapter<String> beersAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, beersList);
 
-        ArrayAdapter beersAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, beersList);
         listView.setAdapter(beersAdapter);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                         });
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             }
         });
