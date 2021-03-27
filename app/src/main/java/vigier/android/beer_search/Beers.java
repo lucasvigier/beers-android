@@ -1,4 +1,4 @@
-package vigier.android.mini_projet_adnroid;
+package vigier.android.beer_search;
 
 import java.io.Serializable;
 import java.util.ArrayList;

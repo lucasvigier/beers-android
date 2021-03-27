@@ -1,4 +1,4 @@
-package vigier.android.mini_projet_adnroid;
+package vigier.android.beer_search;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         listView = findViewById(R.id.listView);
 
-        textView.setText("Beers");
+        textView.setText("PunkAPI Beer Finder");
         button.setText("Search");
 
         ArrayList<String> beersList = new ArrayList<String>();
@@ -63,19 +63,11 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onCompleted(Exception e, String result) {
                                 try {
-                                    JSONArray jso = new JSONArray(result);
-
-                                    System.out.println(jso.length());
-                                    for(int i =0 ; i < jso.length();i++)
-                                    {
-                                        beersList.add(jso.getJSONObject(i).getString("name"));
+                                    JSONArray beerJsonObject = new JSONArray(result);
+                                    for (int i = 0; i < beerJsonObject.length(); i++) {
+                                        beersList.add(beerJsonObject.getJSONObject(i).getString("name"));
                                     }
                                     listView.setAdapter(beersAdapter);
-
-
-
-
-
                                 } catch (JSONException jsonException) {
                                     jsonException.printStackTrace();
                                 }
